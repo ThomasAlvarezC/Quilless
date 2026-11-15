@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://ca6oi56b0rfst"]
+
+[ext_resource type="Script" uid="uid://ql0b68vmrcda" path="res://Godot_v4.7.2-stable_win64.exe/game.gd" id="1_chu3w"]
+[ext_resource type="Texture2D" uid="uid://8s08q14odhx5" path="res://Erizo 2.png" id="2_b128m"]
+[ext_resource type="Texture2D" uid="uid://dpxctt7mdt841" path="res://Erizo.png" id="3_cbrg8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u4kf0"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b128m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cbrg8")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgfhv"]
+size = Vector2(40.250004, 29.999998)
+
+[node name="Player" type="CharacterBody2D" unique_id=1203283657]
+script = ExtResource("1_chu3w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1917161908]
+position = Vector2(189.99997, 251)
+scale = Vector2(1.76, 1.89)
+sprite_frames = SubResource("SpriteFrames_u4kf0")
+animation = &"walk"
+
+[node name="Node" type="Node" parent="AnimatedSprite2D" unique_id=1413440404]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1368310342]
+position = Vector2(189, 247)
+shape = SubResource("RectangleShape2D_mgfhv")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
